@@ -4,10 +4,12 @@ import WebsiteAdmin from './frontend/admin/WebsiteAdmin'
 import WebsiteLayout from './frontend/Layout/WebsiteLayout'
 import About from './frontend/Pages/About'
 import Home from './frontend/Pages/Home'
-import Productt from './frontend/admin/pages/Product'
-import Category from './frontend/admin/pages/Category'
+import Productt from './frontend/admin/pages/Product/Product'
+import Category from './frontend/admin/pages/Category/Category'
 import Dashboard from './frontend/admin/pages/Dashboard'
 import Product from './frontend/Pages/Product'
+import CreateProduct from './frontend/admin/pages/Product/CreateProduct'
+import UpdateProduct from './frontend/admin/pages/Product/UpdateProduct'
 type Props = {}
 
 const Routers = (props: Props) => {
@@ -31,6 +33,8 @@ const Routers = (props: Props) => {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="product">
             <Route index element={<Productt />} />
+            <Route path="create" element={<CreateProduct/>} />
+            <Route path="update" element={<UpdateProduct/>} />
           </Route>
           <Route path="category">
             <Route index element={<Category />} />

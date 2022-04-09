@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Button, CloseButton, Table } from 'react-bootstrap'
-import { list } from '../../api/products'
+import { list } from '../../../api/products'
 
 type Props = {}
 
