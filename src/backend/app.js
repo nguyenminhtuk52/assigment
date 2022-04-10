@@ -11,7 +11,7 @@ app.use(cors());
 app.use(morgan("tiny"));
 app.use("/api",productRouter);
 //
-const PORT =8000;
+const PORT =8005;
 app.listen(PORT,()=>{
     console.log(`Ban dang chay cong PORT: ${PORT}`);
 });

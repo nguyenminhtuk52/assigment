@@ -2,7 +2,7 @@ import React from 'react'
 import {  } from 'react-bootstrap'
 import { Outlet } from 'react-router-dom'
 import Headerr from './component/Headerr'
-import Product from './pages/Product/Product'
+import Product from './pages/Product/ProductManage'
 
 type Props = {}
 
