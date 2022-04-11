@@ -11,14 +11,12 @@ const Navbar = (props: Props) => {
             <div className='nav'>
                 
                 <img className='img-logo' src="https://rubee.com.vn/admin/webroot/upload/image/images/nike-logo.jpg" alt="" />
-                
                 <div className="hi">
-                <p className='a'><a href="">Đăng Nhập</a></p>
+                <NavLink to="signin" ><p className='b'>Đăng Nhập</p></NavLink>
                 <h4 className='h4-navbar'>|</h4>
-                <p className='b'><a href="">Đăng Ký</a></p>
+                <NavLink to="signup" ><p className='b'>Đăng Ký</p></NavLink>
                 <img className='img-logo2' src="https://img.icons8.com/ios/2x/shopping-cart-loaded--v2.gif" alt="" />
                 </div>
-                
             </div>
             <div >
                 <Nav className='navbar'>

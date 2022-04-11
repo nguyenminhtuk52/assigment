@@ -5,13 +5,20 @@ import WebsiteLayout from './frontend/Layout/WebsiteLayout'
 import About from './frontend/Pages/About'
 import Home from './frontend/Pages/Home'
 import Productt from './frontend/admin/pages/Product/ProductManage'
-import Category from './frontend/admin/pages/Category/Category'
+import Category from './frontend/admin/pages/Category/CategoryManage'
 import Dashboard from './frontend/admin/pages/Dashboard'
 import Product from './frontend/Pages/Product'
 import CreateProduct from './frontend/admin/pages/Product/CreateProduct'
 import UpdateProduct from './frontend/admin/pages/Product/UpdateProduct'
 import { ProductType } from './frontend/types/Product'
-import { add, list, remove } from './frontend/api/products'
+import { add, list, remove, update } from './frontend/api/products'
+import { addd, listt, removee, updatee } from './frontend/api/category'
+import product from './frontend/admin/pages/Product/ProductManage'
+import Signup from './frontend/Pages/Signup'
+import Singin from './frontend/Pages/Singin'
+import UpdateCategory from './frontend/admin/pages/Category/UpdateCategory'
+import CreateCategory from './frontend/admin/pages/Category/CreateCategory'
+import { CategoryType } from './frontend/types/category'
 type Props = {}
 
 const Routers = (props: Props) => {
@@ -25,14 +32,25 @@ const Routers = (props: Props) => {
   }, [])
   const onHandleRemove = (_id: number) => {
     remove(_id);
-    // reRender
     setProducts(products.filter(item => item._id !== _id));
-    // setProduct()
   }
   const onHandleAdd = async (product: ProductType) => {
-    const {data}=await add(product);
-    setProducts([...products,data])
+    const { data } = await add(product);
+    setProducts([...products, data])
   }
+  const onHandleUpdate = async (product: ProductType) => {
+    const { data } = await update(product);
+    setProducts(products.map(item => item._id == data._id ? data : item));
+  }
+  //cate
+  const [categorys,setCategorys] = useState<CategoryType[]>([]);
+  useEffect(() => {
+    const getCategory = async () => {
+      const { data } = await listt();
+      setCategorys(data);
+    };
+    getCategory();
+  }, [])
   return (
     <div>
       <Routes>
@@ -42,8 +60,14 @@ const Routers = (props: Props) => {
           <Route path="about">
             <Route index element={<About />} />
           </Route>
+          <Route path="signup">
+            <Route index element={<Signup />} />
+          </Route>
+          <Route path="signin">
+            <Route index element={<Singin />} />
+          </Route>
           <Route path="product">
-            <Route index element={<Product />} />
+            <Route index element={<Product products={products} />} />
           </Route>
         </Route>
       </Routes>
@@ -54,10 +78,12 @@ const Routers = (props: Props) => {
           <Route path="product">
             <Route index element={<Productt products={products} onRemove={onHandleRemove} />} />
             <Route path="create" element={<CreateProduct onAdd={onHandleAdd} />} />
-            <Route path="update" element={<UpdateProduct />} />
+            <Route path=":_id/update" element={<UpdateProduct onUpdate={onHandleUpdate} />} />
           </Route>
           <Route path="category">
-            <Route index element={<Category />} />
+            <Route index element={<Category categorys={categorys} />} />
+            <Route path="create" element={<CreateCategory />} />
+            <Route path=":_id/update" element={<UpdateCategory />} />
           </Route>
         </Route>
       </Routes>

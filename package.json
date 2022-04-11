@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "start": "nodemon ./src/backend/app.js --exec babel-node -e js ./src/tailwind.css -w"
+    "start": "nodemon ./src/backend/app.js --exec babel-node -e js "
   },
   "dependencies": {
     "antd": "^4.19.5",

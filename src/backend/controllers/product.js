@@ -1,10 +1,12 @@
 import Product from "../models/product";
-export const create = async (req, res) => {
+export const create = async(req,res)=>{
     try {
-        const product = await new Product(req.body).save();
-        res.json(product) 
+        const product = await new Product(req.body);
+        res.json(product);
     } catch (error) {
-        res.status(400).json({mess:"Khong the them san pham"})
+        res.status(400).json({
+            message:"Khong tim thay list"
+        })
     }
 }
 export const list = async (req,res)=>{
@@ -38,8 +40,9 @@ export const remove = async (req,res)=>{
     }
 }
 export const update = async (req,res)=>{
+    const {name,price,image,description}=req.body;
     try {
-        const product = await Product.findOneAndUpdate({_id:req.params.id}).exec();
+        const product = await Product.findOneAndUpdate({_id:req.params.id},{name,price:+price,image,description}).exec();
         res.json(product);
     } catch (error) {
         res.status(400).json({

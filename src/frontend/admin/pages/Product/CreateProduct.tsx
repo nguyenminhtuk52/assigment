@@ -1,47 +1,63 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
-import {useForm,SubmitHandler} from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { ProductType } from '../../../types/Product'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 type CreateProductProps = {
-  onAdd:(product:ProductType)=>void,
+  onAdd: (product: ProductType) => void,
 }
-type formInput={
-  name:string,
-  price:number,
-  description:string,
-  image:string
+type formInput = {
+  name: string,
+  price: number,
+  description: string,
+  image: string
 }
 const CreateProduct = (props: CreateProductProps) => {
-  const {register,handleSubmit,formState:{errors}}=useForm<formInput>();
-  const navitage=useNavigate();
-  const onSubmit:SubmitHandler<formInput> =(data:ProductType)=>{
+  const { register, handleSubmit, formState: { errors } } = useForm<formInput>();
+  const navitage = useNavigate();
+  const onSubmit: SubmitHandler<formInput> = (data: ProductType) => {
     console.log(data);
     props.onAdd(data)
     navitage("/admin/product")
-    
+
   }
   return (
     <div>
       <Form action='' onSubmit={handleSubmit(onSubmit)} style={{ maxWidth: '1200px', margin: 'auto' }}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label><h4>Thêm Mới Sản Phẩm</h4></Form.Label>
+          {/* <Form.Select aria-label="Default select example">
+            <option>Danh mục</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </Form.Select> */}
           <Form.Group>
             <Form.Label>Nhập Tên Sản Phẩm</Form.Label>
-            <Form.Control type="text" {...register('name')} />
+            <Form.Control type="text" {...register('name', { required: true })}/>
+            {errors.name && errors.name.type === "required" && <span className="validate">Tên sản phẩm không được để trống</span>}
+           
+            <br />
+            <br />
           </Form.Group>
           <Form.Group>
             <Form.Label>Nhập Giá Sản Phẩm</Form.Label>
-            <Form.Control type="number" {...register('price')}/>
+            <Form.Control type="number" {...register('price',{ required: true })} />
+            {errors.name && errors.name.type === "required" && <span className="validate">Giá sản phẩm không được để trống</span>}
+            <br />
+            <br />
           </Form.Group>
           <Form.Group>
             <Form.Label>Nhập Ảnh Sản Phẩm</Form.Label>
-            <Form.Control type="text" {...register('image')}/>
+            <Form.Control type="text"  {...register('image',{ required: true, minLength: 6 })} />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Nhập Mô Tả Sản Phẩm</Form.Label>
-            <Form.Control as="textarea" rows={3} {...register('description')} />
+            <Form.Control as="textarea" rows={3} {...register('description',{ required: true})} />
+            {errors.name && errors.name.type === "required" && <span className="validate">Mô Tả không được để trống</span>}
+            <br />
+            <br />
           </Form.Group>
         </Form.Group>
         <Button variant="primary" type="submit">
@@ -49,7 +65,7 @@ const CreateProduct = (props: CreateProductProps) => {
         </Button>
       </Form>
       <script>
-        
+
       </script>
     </div>
   )

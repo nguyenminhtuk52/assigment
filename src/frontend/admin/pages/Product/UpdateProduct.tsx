@@ -1,10 +1,64 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Button, Form } from 'react-bootstrap'
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate, useParams } from 'react-router-dom';
+import { read } from '../../../api/products'
+import { ProductType } from '../../../types/Product'
 
-type Props = {}
+type UpdateProductProps = {
+  onUpdate: (product: ProductType) => void
+}
+type FormInputs = {
+  name: string,
+  price: number,
+  description: string,
+  image: string
+}
+const UpdateProduct = (props: UpdateProductProps) => {
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormInputs>();
+  const navigate = useNavigate();
+  const { _id } = useParams();
 
-const UpdateProduct = (props: Props) => {
+  useEffect(() => {
+    const getProduct = async () => {
+      const { data } = await read(_id);
+      reset(data);
+    }
+    getProduct();
+  }, [])
+  const onSubmit: SubmitHandler<FormInputs> = data => {
+    props.onUpdate(data);
+    // navigate("/admin/product");
+    console.log(data);
+    
+  }
   return (
-    <div>UpdateProduct</div>
+    <div>
+      <Form action='' onSubmit={handleSubmit(onSubmit)} style={{ maxWidth: '1200px', margin: 'auto' }}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label><h4>Cập Nhật Sản Phẩm</h4></Form.Label>
+          <Form.Group>
+            <Form.Label>Nhập Tên Sản Phẩm</Form.Label>
+            <Form.Control type="text" {...register('name', { required: true })} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Nhập Giá Sản Phẩm</Form.Label>
+            <Form.Control type="number"  {...register('price')} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Nhập Ảnh Sản Phẩm</Form.Label>
+            <Form.Control type="text"  {...register('image')} />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Nhập Mô Tả Sản Phẩm</Form.Label>
+            <Form.Control as="textarea" rows={3} {...register('description')} />
+          </Form.Group>
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </div>
   )
 }
 

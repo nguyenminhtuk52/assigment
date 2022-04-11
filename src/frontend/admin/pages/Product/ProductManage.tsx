@@ -1,18 +1,17 @@
 import axios from 'axios'
 import React, { Props, useEffect, useState } from 'react'
 import { Button, CloseButton, Table } from 'react-bootstrap'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { list } from '../../../api/products'
 import { ProductType } from '../../../types/Product'
 
 type ProductManage = {
-  products: ProductType,
-  onRemove: (_id: number) => void
+  products: ProductType
 }
 const product = (props: ProductManage) => {
   return (
     <div>
-      <NavLink to='create'><Button style={{margin:'5px 0px 0px 200px'}} className='' variant="outline-primary">Thêm Mới Sản Phẩm</Button></NavLink>
+      <NavLink to='create'><Button style={{ margin: '5px 0px 0px 200px' }} className='' variant="outline-primary">Thêm Mới Sản Phẩm</Button></NavLink>
       <Table striped bordered hover className='table'>
         <thead>
           <tr>
@@ -31,8 +30,8 @@ const product = (props: ProductManage) => {
               <td>{item.price}</td>
               <td><img width={'50px'} src={item.image} alt="" /></td>
               <td>
-                <Button variant="outline-warning">Sửa</Button>
-                <Button style={{marginLeft:'10px'}} onClick={() => props.onRemove(item._id)} variant="outline-danger">Xóa</Button>
+                <Link to={`/admin/product/${item._id}/update`}><Button variant="outline-warning">Sửa</Button></Link>
+                <Button style={{ marginLeft: '10px' }} onClick={() => props.onRemove(item._id)} variant="outline-danger">Xóa</Button>
               </td>
             </tr>
           })}

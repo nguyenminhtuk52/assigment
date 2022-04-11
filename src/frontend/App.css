@@ -149,8 +149,15 @@
 
 }
 .content1{
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap:10px;
   margin-top: 10px;
   margin-bottom: 10px;
+  max-width: 1000px;
+}
+.abcc{
+  border-radius: 30px;
+  height: 60px;
+  width: 80px;
 }

@@ -1,7 +1,9 @@
 import React from 'react'
 import { Badge, Card, FloatingLabel, Form, ListGroup, Pagination } from 'react-bootstrap'
 import '../App.css'
-type Props = {}
+type Props = {
+  products: ProductType,
+}
 
 const Product = (props: Props) => {
   return (
@@ -17,7 +19,7 @@ const Product = (props: Props) => {
               className="d-flex justify-content-between align-items-start"
             >
               <div className="ms-2 me-auto">
-                <div className="fw-bold">Giầy Nike</div> 
+                <div className="fw-bold">Giầy Nike</div>
               </div>
               <Badge bg="primary" pill>
                 14
@@ -47,13 +49,13 @@ const Product = (props: Props) => {
             </ListGroup.Item>
           </ListGroup>
         </div>
-        <div style={{marginTop:'30px'}}>
+        <div style={{ marginTop: '30px' }}>
           <>
             <Form.Label>Tìm Theo Giá Sản Phẩm</Form.Label>
-            <Form.Range style={{width:'330px',marginTop:'20px'}} />    
+            <Form.Range style={{ width: '330px', marginTop: '20px' }} />
           </>
         </div>
-        <div className="search" style={{width:'330px' , display: 'flex',marginTop:'30px'}}>
+        <div className="search" style={{ width: '330px', display: 'flex', marginTop: '30px' }}>
           <>
             <FloatingLabel style={{ width: '20rem' }}
               controlId="floatingInput"
@@ -61,229 +63,30 @@ const Product = (props: Props) => {
               className="mb-3">
               <Form.Control style={{ borderRadius: '30px' }} type="email" placeholder="name@example.com" />
             </FloatingLabel>
-            <span><img className='img-search' src="https://img.icons8.com/ios/2x/search--v4.gif" alt="" /></span>
+            <button className='abcc'><span><img style={{width:'40px'}} className='img-search' src="https://img.icons8.com/external-line-gradient-kendis-lasman/344/external-search-graphic-design-line-gradient-line-gradient-kendis-lasman.png" alt="" /></span></button>
           </>
         </div>
       </div>
       <div className='product2'>
-        <h2 style={{margin:'auto',textAlign:'center'}}>Tất Cả Sản Phẩm</h2>
+        <h2 style={{ margin: 'auto', textAlign: 'center' }}>Tất Cả Sản Phẩm</h2>
         <div className='content1'>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
+          {props.products?.map((item, index) => {
+            return <Card key={index} style={{ width: '18rem', height: '22rem' }}>
+              <Card.Img style={{ height: '17rem' }} variant="top" src={item.image} />
+              <Card.Body>
+                <Card.Text className='text-content' style={{ display: 'flex' }}>
+                  <Card.Text>
+                  {item.name}
+                  </Card.Text>
+                  <Card.Text className='text-price'>
+                  {item.price}$
+                  </Card.Text>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          })}
         </div>
-        <div className='content1'>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        </div>
-        <div className='content1'>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        </div>
-        <div className='content1'>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem', height: '22rem' }}>
-          <Card.Img style={{ height: '17rem' }} variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJyTIBgJfFL7dCFZGffYzzVc67-XNTz6C8A&usqp=CAU" />
-          <Card.Body>
-            <Card.Text className='text-content' style={{ display: 'flex' }}>
-              <Card.Text>
-                Giầy Converse
-              </Card.Text>
-              <Card.Text className='text-price'>
-                20$
-              </Card.Text>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        </div>
-        <Pagination style={{marginLeft:'150px',marginTop:'30px'}}>
+        <Pagination style={{ marginLeft: '150px', marginTop: '30px' }}>
           <Pagination.First />
           <Pagination.Prev />
           <Pagination.Item>{1}</Pagination.Item>

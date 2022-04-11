@@ -1,21 +1,23 @@
 import express from "express";
-import nodemon from "nodemon";
-import mongoose from "mongoose";
-import cors from "cors";
 import morgan from "morgan";
+import cors from "cors";
+import mongoose from "mongoose";
 import productRouter from "./routers/product";
+import userRouter from "./routers/auth";
+import categoryRouter from "./routers/category";
 //
-const app = express();
+const app =express();
+app.use(morgan("tiny"));
 app.use(express.json());
 app.use(cors());
-app.use(morgan("tiny"));
 app.use("/api",productRouter);
-//
-const PORT =8005;
-app.listen(PORT,()=>{
-    console.log(`Ban dang chay cong PORT: ${PORT}`);
-});
+app.use("/api",categoryRouter);
+app.use("/api",userRouter);
 //
 mongoose.connect("mongodb://localhost:27017/asm")
-    .then(() => console.log("Ket noi DB thanh cong"))
-    .catch(error => console.log(error))
+.then(()=>console.log("ket noi thanh cong "))
+.catch(erorr=>console.log(erorr))
+//
+app.listen(8000,()=>{
+    console.log("Dang chajy server port 8000")
+})
