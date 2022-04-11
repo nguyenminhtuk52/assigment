@@ -26,11 +26,14 @@ const product = (props: ProductManage) => {
           </tr>
         </thead>
         <tbody>
+        {props.categorys?.map((itemm, index) => {
+          {itemm.name};
+          })}
           {props.products?.map((item, index) => {
             return <tr key={index}>
               <td>{index + 1}</td>
               <td>{item.name}</td>
-              <td></td>
+              <td>{item.cateId}</td>
               <td>{item.price}</td>
               <td><img width={'50px'} src={item.image} alt="" /></td>
               <td>

@@ -90,7 +90,7 @@ const Routers = (props: Props) => {
           <Route path="product">
             <Route index element={<Productt products={products} onRemove={onHandleRemove} categorys={categorys} />} />
             <Route path="create" element={<CreateProduct onAdd={onHandleAdd} categorys={categorys}/>} />
-            <Route path=":_id/update" element={<UpdateProduct onUpdate={onHandleUpdate} />} />
+            <Route path=":_id/update" element={<UpdateProduct onUpdate={onHandleUpdate} categorys={categorys}/>} />
           </Route>
           <Route path="category">
             <Route index element={<Category categorys={categorys} onRemovee={onHandleRemovee} />} />

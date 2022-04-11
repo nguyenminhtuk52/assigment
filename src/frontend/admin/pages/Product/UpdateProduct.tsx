@@ -3,9 +3,11 @@ import { Button, Form } from 'react-bootstrap'
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { read } from '../../../api/products'
+import { CategoryType } from '../../../types/category';
 import { ProductType } from '../../../types/Product'
 
 type UpdateProductProps = {
+  categorys: CategoryType,
   onUpdate: (product: ProductType) => void
 }
 type FormInputs = {
@@ -35,6 +37,11 @@ const UpdateProduct = (props: UpdateProductProps) => {
       <Form action='' onSubmit={handleSubmit(onSubmit)} style={{ maxWidth: '1200px', margin: 'auto' }}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label><h4>Cập Nhật Sản Phẩm</h4></Form.Label>
+          {/* <Form.Select aria-label="Default select example">
+            {props.categorys?.map((item, index) => {
+              return <option {...register('cateId')} value={item._id}>{item.name}</option>
+            })};
+          </Form.Select> */}
           <Form.Group>
             <Form.Label>Nhập Tên Sản Phẩm</Form.Label>
             <Form.Control type="text" {...register('name', { required: true })} />
@@ -59,5 +66,4 @@ const UpdateProduct = (props: UpdateProductProps) => {
     </div>
   )
 }
-
 export default UpdateProduct

@@ -1,9 +1,7 @@
 import axios from 'axios'
 import { Button, Table } from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom'
-import { listt } from '../../../api/category'
 import { CategoryType } from '../../../types/category'
-
 type CategoryManage = {
   categorys: CategoryType,
   onRemovee: (category: CategoryType) => void
