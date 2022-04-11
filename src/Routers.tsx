@@ -43,7 +43,7 @@ const Routers = (props: Props) => {
     setProducts(products.map(item => item._id == data._id ? data : item));
   }
   //cate
-  const [categorys,setCategorys] = useState<CategoryType[]>([]);
+  const [categorys, setCategorys] = useState<CategoryType[]>([]);
   useEffect(() => {
     const getCategory = async () => {
       const { data } = await listt();
@@ -51,6 +51,18 @@ const Routers = (props: Props) => {
     };
     getCategory();
   }, [])
+  const onHandleRemovee = (_id: number) => {
+    removee(_id);
+    setCategorys(categorys.filter(item => item._id !== _id));
+  }
+  const onHandleAddd = async (category: CategoryType) => {
+    const { data } = await addd(category);
+    setCategorys([...categorys, data])
+  }
+  const onHandleUpdatee = async (category: CategoryType) => {
+    const { data } = await updatee(category);
+    setCategorys(categorys.map(item => item._id == data._id ? data : item));
+  }
   return (
     <div>
       <Routes>
@@ -77,13 +89,13 @@ const Routers = (props: Props) => {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="product">
             <Route index element={<Productt products={products} onRemove={onHandleRemove} />} />
-            <Route path="create" element={<CreateProduct onAdd={onHandleAdd} />} />
+            <Route path="create" element={<CreateProduct onAdd={onHandleAdd} categorys={categorys}/>} />
             <Route path=":_id/update" element={<UpdateProduct onUpdate={onHandleUpdate} />} />
           </Route>
           <Route path="category">
-            <Route index element={<Category categorys={categorys} />} />
-            <Route path="create" element={<CreateCategory />} />
-            <Route path=":_id/update" element={<UpdateCategory />} />
+            <Route index element={<Category categorys={categorys} onRemovee={onHandleRemovee} />} />
+            <Route path="create" element={<CreateCategory onAddd={onHandleAddd} />} />
+            <Route path=":_id/update" element={<UpdateCategory onUpdatee={onHandleUpdatee} />} />
           </Route>
         </Route>
       </Routes>

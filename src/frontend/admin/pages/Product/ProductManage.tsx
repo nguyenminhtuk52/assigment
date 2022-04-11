@@ -7,6 +7,7 @@ import { ProductType } from '../../../types/Product'
 
 type ProductManage = {
   products: ProductType
+  onRemove: (product: ProductType) => void
 }
 const product = (props: ProductManage) => {
   return (

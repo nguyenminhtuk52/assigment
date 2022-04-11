@@ -6,12 +6,12 @@ import { CategoryType } from '../../../types/category'
 
 type CategoryManage = {
   categorys: CategoryType,
-  
+  onRemovee: (category: CategoryType) => void
 }
 const category = (props: CategoryManage) => {
   return (
     <div>
-      <NavLink to='create'><Button style={{ margin: '5px 0px 0px 200px' }} className='' variant="outline-primary">Thêm Mới Sản Phẩm</Button></NavLink>
+      <NavLink to='create'><Button style={{ margin: '5px 0px 0px 200px' }} className='' variant="outline-primary">Thêm Mới Danh Mục</Button></NavLink>
       <Table striped bordered hover className='table'>
         <thead>
           <tr>
@@ -26,8 +26,8 @@ const category = (props: CategoryManage) => {
               <td>{index + 1}</td>
               <td>{item.name}</td>
               <td>
-                <Link to={``}><Button variant="outline-warning">Sửa</Button></Link>
-                <Button style={{ marginLeft: '10px' }} variant="outline-danger">Xóa</Button>
+                <Link to={`/admin/category/${item._id}/update`}><Button variant="outline-warning">Sửa</Button></Link>
+                <Button style={{ marginLeft: '10px' }} onClick={() => props.onRemovee(item._id)} variant="outline-danger">Xóa</Button>
               </td>
             </tr>
           })}

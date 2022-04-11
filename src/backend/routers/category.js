@@ -1,9 +1,12 @@
 import { Router } from 'express';
-import { create, read } from '../controllers/category';
+import { createe, listt, readd, removee, updatee } from '../controllers/category';
 
 const router = Router();
 
-router.post('/category', create);
-router.get("/category/:id", read);
+router.post('/category', createe);
+router.get("/category/:id", readd);
+router.get("/category",listt);
+router.delete("/category/:id",removee);
+router.put("/category/:id",updatee);
 
 export default router;
