@@ -2,11 +2,12 @@ import axios from 'axios'
 import React, { Props, useEffect, useState } from 'react'
 import { Button, CloseButton, Table } from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom'
-import { list } from '../../../api/products'
+import { CategoryType } from '../../../types/category'
 import { ProductType } from '../../../types/Product'
 
 type ProductManage = {
-  products: ProductType
+  products: ProductType,
+  categorys: CategoryType,
   onRemove: (product: ProductType) => void
 }
 const product = (props: ProductManage) => {
@@ -18,6 +19,7 @@ const product = (props: ProductManage) => {
           <tr>
             <th>#</th>
             <th>Tên</th>
+            <th>Danh Mục</th>
             <th>Giá</th>
             <th>Ảnh</th>
             <th>Edit</th>
@@ -28,6 +30,7 @@ const product = (props: ProductManage) => {
             return <tr key={index}>
               <td>{index + 1}</td>
               <td>{item.name}</td>
+              <td></td>
               <td>{item.price}</td>
               <td><img width={'50px'} src={item.image} alt="" /></td>
               <td>

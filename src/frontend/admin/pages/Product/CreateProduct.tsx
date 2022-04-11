@@ -59,7 +59,7 @@ const CreateProduct = (props: CreateProductProps) => {
           </Form.Group>
         </Form.Group>
         <Button variant="primary" type="submit">
-          Submit
+          Thêm Mới Sản Phẩm
         </Button>
       </Form>
     </div>
