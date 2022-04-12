@@ -79,7 +79,7 @@ const Routers = (props: Props) => {
             <Route index element={<Singin />} />
           </Route>
           <Route path="product">
-            <Route index element={<Product products={products} />} />
+            <Route index element={<Product products={products} categorys={categorys} />} />
           </Route>
         </Route>
       </Routes>

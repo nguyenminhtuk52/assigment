@@ -1,11 +1,21 @@
 import React from 'react'
 import { Badge, Card, FloatingLabel, Form, ListGroup, Pagination } from 'react-bootstrap'
 import '../App.css'
+import { CategoryType } from '../types/category'
+import { ProductType } from '../types/Product'
 type Props = {
   products: ProductType,
+  categorys: CategoryType
 }
 
 const Product = (props: Props) => {
+  {/* const [products, setProducts] = useState('');
+  const [text, setText] = React.useState('');
+  const handleOnClick = () => {
+    const findUsers = products?.lenght>0 
+    && products?.fillter((u)=>u?.name === text);
+    setProducts(findUsers); 
+  }; */}
   return (
     <div className='product'>
       <div className='product1'>
@@ -14,39 +24,19 @@ const Product = (props: Props) => {
             <ListGroup.Item action href="#link1">
               Danh Mục
             </ListGroup.Item>
-            <ListGroup.Item
-              as="li"
-              className="d-flex justify-content-between align-items-start"
-            >
-              <div className="ms-2 me-auto">
-                <div className="fw-bold">Giầy Nike</div>
-              </div>
-              <Badge bg="primary" pill>
-                14
-              </Badge>
-            </ListGroup.Item>
-            <ListGroup.Item
-              as="li"
-              className="d-flex justify-content-between align-items-start"
-            >
-              <div className="ms-2 me-auto">
-                <div className="fw-bold">Giầy Converse</div>
-              </div>
-              <Badge bg="primary" pill>
-                14
-              </Badge>
-            </ListGroup.Item>
-            <ListGroup.Item
-              as="li"
-              className="d-flex justify-content-between align-items-start"
-            >
-              <div className="ms-2 me-auto">
-                <div className="fw-bold">Giầy Adidas</div>
-              </div>
-              <Badge bg="primary" pill>
-                14
-              </Badge>
-            </ListGroup.Item>
+            {props.categorys?.map((item, index) => {
+              return <ListGroup.Item key={index}
+                as="li"
+                className="d-flex justify-content-between align-items-start"
+              >
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">{item.name}</div>
+                </div>
+                <Badge bg="primary" pill>
+                  10
+                </Badge>
+              </ListGroup.Item>
+            })}
           </ListGroup>
         </div>
         <div style={{ marginTop: '30px' }}>
@@ -61,9 +51,12 @@ const Product = (props: Props) => {
               controlId="floatingInput"
               label="Tìm Kiếm Sản Phẩm"
               className="mb-3">
-              <Form.Control style={{ borderRadius: '30px' }} type="email" placeholder="name@example.com" />
+              <Form.Control style={{ borderRadius: '30px' }} type="email"
+                placeholder="name@example.com" />
             </FloatingLabel>
-            <button className='abcc'><span><img style={{width:'40px'}} className='img-search' src="https://img.icons8.com/external-line-gradient-kendis-lasman/344/external-search-graphic-design-line-gradient-line-gradient-kendis-lasman.png" alt="" /></span></button>
+            <button className='abcc'><span><img style={{ width: '40px' }} className='img-search'
+              src="https://img.icons8.com/external-line-gradient-kendis-lasman/344/external-search-graphic-design-line-gradient-line-gradient-kendis-lasman.png" alt=""
+            /></span></button>
           </>
         </div>
       </div>
@@ -76,10 +69,10 @@ const Product = (props: Props) => {
               <Card.Body>
                 <Card.Text className='text-content' style={{ display: 'flex' }}>
                   <Card.Text>
-                  {item.name}
+                    {item.name}
                   </Card.Text>
                   <Card.Text className='text-price'>
-                  {item.price}$
+                    {item.price}$
                   </Card.Text>
                 </Card.Text>
               </Card.Body>
