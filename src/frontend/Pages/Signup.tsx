@@ -15,9 +15,9 @@ const Signup = () => {
     const onSubmit: SubmitHandler<FormInputs> = data => {
         signup(data);
         alert("Đăng Ký Thành Công");
-        navigate('/index');
+        navigate('/signin');
         console.log(data);
-        
+
     }
     return (
         <div>
@@ -36,8 +36,7 @@ const Signup = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" {...register('password', { required: true })} />
                 </Form.Group>
-                <button>Đăng Ký Tài Khoản</button>
-                {/* <Button variant="outline-secondary" size="lg">Đăng Ký Tài Khoản</Button> */}
+                <button style={{borderRadius:'5px',width:'550px',height:'40px',backgroundColor:'gray',marginLeft:'250px'}}>Đăng Ký Tài Khoản</button>
             </Form>
         </div>
     )

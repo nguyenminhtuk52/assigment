@@ -19,6 +19,7 @@ import Singin from './frontend/Pages/Singin'
 import UpdateCategory from './frontend/admin/pages/Category/UpdateCategory'
 import CreateCategory from './frontend/admin/pages/Category/CreateCategory'
 import { CategoryType } from './frontend/types/category'
+import Deltail from './frontend/Pages/Deltail'
 type Props = {}
 
 const Routers = (props: Props) => {
@@ -80,6 +81,7 @@ const Routers = (props: Props) => {
           </Route>
           <Route path="product">
             <Route index element={<Product products={products} categorys={categorys} />} />
+            <Route path=':_id' element={<Deltail />} />
           </Route>
         </Route>
       </Routes>

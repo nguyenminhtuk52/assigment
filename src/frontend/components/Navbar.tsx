@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav } from 'react-bootstrap'
+import { Dropdown, Nav } from 'react-bootstrap'
 import {NavLink} from 'react-router-dom'
 import "../App.css"
 import Slide from "./Slide"
@@ -15,7 +15,14 @@ const Navbar = (props: Props) => {
                 <NavLink to="signin" ><p className='b'>Đăng Nhập</p></NavLink>
                 <h4 className='h4-navbar'>|</h4>
                 <NavLink to="signup" ><p className='b'>Đăng Ký</p></NavLink>
-                <img className='img-logo2' src="https://img.icons8.com/ios/2x/shopping-cart-loaded--v2.gif" alt="" />
+                <Dropdown style={{width:'10%'}} >
+                        <Dropdown.Toggle variant="none" className='img-22'>
+                            <img style={{width:"3rem"}} src="https://img.icons8.com/ios/2x/guest-male.png" alt="" />
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="#/action-1">Đăng Xuất</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </div>
             </div>
             <div >

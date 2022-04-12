@@ -1,5 +1,6 @@
 import React from 'react'
 import { Badge, Card, FloatingLabel, Form, ListGroup, Pagination } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import '../App.css'
 import { CategoryType } from '../types/category'
 import { ProductType } from '../types/Product'
@@ -65,17 +66,21 @@ const Product = (props: Props) => {
         <div className='content1'>
           {props.products?.map((item, index) => {
             return <Card key={index} style={{ width: '18rem', height: '22rem' }}>
-              <Card.Img style={{ height: '17rem' }} variant="top" src={item.image} />
-              <Card.Body>
-                <Card.Text className='text-content' style={{ display: 'flex' }}>
-                  <Card.Text>
-                    {item.name}
+              <Link to={`/product/${item._id}`}>
+                <div style={{overflow:'hidden'}}>
+                <Card.Img className='img-content' style={{ height: '17rem'}} variant="top" src={item.image} />
+                </div>
+                <Card.Body>
+                  <Card.Text className='text-content' style={{ display: 'flex' }}>
+                    <Card.Text>
+                      {item.name}
+                    </Card.Text>
+                    <Card.Text className='text-price'>
+                      {item.price}$
+                    </Card.Text>
                   </Card.Text>
-                  <Card.Text className='text-price'>
-                    {item.price}$
-                  </Card.Text>
-                </Card.Text>
-              </Card.Body>
+                </Card.Body>
+              </Link>
             </Card>
           })}
         </div>

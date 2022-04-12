@@ -19,7 +19,6 @@ const product = (props: ProductManage) => {
           <tr>
             <th>#</th>
             <th>Tên</th>
-            <th>Danh Mục</th>
             <th>Giá</th>
             <th>Ảnh</th>
             <th>Edit</th>
@@ -33,7 +32,6 @@ const product = (props: ProductManage) => {
             return <tr key={index}>
               <td>{index + 1}</td>
               <td>{item.name}</td>
-              <td>{item.cateId}</td>
               <td>{item.price}</td>
               <td><img width={'50px'} src={item.image} alt="" /></td>
               <td>

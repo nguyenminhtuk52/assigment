@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { ProductType } from '../../../types/Product'
 import { useNavigate } from 'react-router-dom'
+import { CategoryType } from '../../../types/category'
 type CreateProductProps = {
   onAdd: (product: ProductType) => void,
   categorys: CategoryType
@@ -26,9 +27,9 @@ const CreateProduct = (props: CreateProductProps) => {
       <Form action='' onSubmit={handleSubmit(onSubmit)} style={{ maxWidth: '1200px', margin: 'auto' }}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label><h4>Thêm Mới Sản Phẩm</h4></Form.Label>
-          <Form.Select aria-label="Default select example">
+          <Form.Select {...register('cateId')}   aria-label="Default select example">
             {props.categorys?.map((item, index) => {
-              return <option {...register('cateId')} value={item._id}>{item.name}</option>
+              return <option value={item._id}>{item.name}</option>
             })};
           </Form.Select>
           <br />

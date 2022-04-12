@@ -2,11 +2,13 @@
   margin: auto;
 }
 
-.App a {
+.App a{
   text-decoration: none;
   color: black;
 }
-
+.App a:hover{
+  font-weight: bold;
+}
 .img-logo2 {
   margin-top: 15px;
   width: 30px;
@@ -121,7 +123,7 @@
 }
 
 .text-price {
-  margin-left: 120px;
+  margin-left:180px;
   font-weight: bold;
 }
 
@@ -150,14 +152,34 @@
 }
 .content1{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap:10px;
   margin-top: 10px;
   margin-bottom: 10px;
   max-width: 1000px;
+  
 }
 .abcc{
   border-radius: 30px;
   height: 60px;
   width: 80px;
+}
+.detaill{
+  display: flex;
+  padding:30px;
+  margin-left: 250px;
+}
+.detaill_img{
+  width: 70%;
+}
+.detaill_img img{
+  width: 50%;
+}
+.detail_1{
+  padding-left: 30px;
+  border-left: 2px solid black;
+}
+.img-content:hover{
+  transform: scale(1.1);
+  transition: ease-in-out 0.6s;
 }
