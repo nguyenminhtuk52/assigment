@@ -1,27 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Dropdown, Nav } from 'react-bootstrap'
-import {NavLink} from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import "../App.css"
-import Slide from "./Slide"
+import { isAuthenticate } from '../utils/Localstorge'
 type Props = {}
 
 const Navbar = (props: Props) => {
+    const navigate = useNavigate();
+    const [user, setUser] = useState('');
+    const handerlRemove = async () => {
+        const respon = await localStorage.removeItem('user');
+        setUser(respon);
+        navigate('/');
+        alert("Đăng Xuất Thành Công");
+    }
     return (
         <div>
             <div className='nav'>
-                
-                <img className='img-logo' src="https://rubee.com.vn/admin/webroot/upload/image/images/nike-logo.jpg" alt="" />
-                <div className="hi">
-                <NavLink to="signin" ><p className='b'>Đăng Nhập</p></NavLink>
-                <h4 className='h4-navbar'>|</h4>
-                <NavLink to="signup" ><p className='b'>Đăng Ký</p></NavLink>
-                <Dropdown style={{width:'10%'}} >
+                <div className='hiiii'>
+                    <img className='img-logo' src="https://rubee.com.vn/admin/webroot/upload/image/images/nike-logo.jpg" alt="" />
+                </div>
+                <div className="hii" style={{marginBottom:'30px'}}>
+                    <NavLink to="signin" ><p className='b'>Đăng Nhập</p></NavLink>
+                    <h4 className='h4-navbar'>|</h4>
+                    <NavLink to="signup" ><p className='b'>Đăng Ký</p></NavLink>
+                    <Dropdown style={{ width: '10%' }} >
                         <Dropdown.Toggle variant="none" className='img-22'>
-                            <img style={{width:"3rem"}} src="https://img.icons8.com/ios/2x/guest-male.png" alt="" />
+                            <img style={{ width: "3rem" }} src="https://img.icons8.com/ios/2x/guest-male.png" alt="" />
                         </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">Đăng Xuất</Dropdown.Item>
-                        </Dropdown.Menu>
+                        {isAuthenticate() && (
+                            <Dropdown.Menu>
+                                <Dropdown.Item>{isAuthenticate().user?.email}</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handerlRemove()}>Đăng Xuất</Dropdown.Item>
+                            </Dropdown.Menu>
+                        )}
                     </Dropdown>
                 </div>
             </div>
@@ -42,7 +54,7 @@ const Navbar = (props: Props) => {
                 </Nav>
             </div>
         </div>
-        
+
     )
 }
 

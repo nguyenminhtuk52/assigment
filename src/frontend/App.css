@@ -17,10 +17,12 @@
 }
 
 .nav {
-  flex: auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
-
+.hiiii{
+  
+}
 .logo {
   display: flex;
   margin-bottom: 30px;
@@ -35,13 +37,11 @@
   width: 1000px;
   margin-left: 300px;
 }
-
-.hi {
+.hii{
   display: flex;
-  margin-left: 1280px;
+  margin-left: 1230px;
   flex: 1 1 1;
 }
-
 .a {
   height: 25px;
   margin-top: 20px;

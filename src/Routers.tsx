@@ -20,6 +20,7 @@ import UpdateCategory from './frontend/admin/pages/Category/UpdateCategory'
 import CreateCategory from './frontend/admin/pages/Category/CreateCategory'
 import { CategoryType } from './frontend/types/category'
 import Deltail from './frontend/Pages/Deltail'
+import PrivateRouter from './frontend/components/PrivateRouter'
 type Props = {}
 
 const Routers = (props: Props) => {
@@ -86,7 +87,7 @@ const Routers = (props: Props) => {
         </Route>
       </Routes>
       <Routes>
-        <Route path="admin" element={<WebsiteAdmin />}>
+        <Route path="admin" element={<PrivateRouter><WebsiteAdmin /></PrivateRouter>}>
           <Route index element={<Navigate to="dashboard" />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="product">

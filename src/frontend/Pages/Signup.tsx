@@ -21,7 +21,7 @@ const Signup = () => {
     }
     return (
         <div>
-            <Form style={{ maxWidth: '1200px', margin: 'auto' }} onSubmit={handleSubmit(onSubmit)} >
+            <Form style={{ maxWidth: '1200px', margin: 'auto',marginTop:'30px' }} onSubmit={handleSubmit(onSubmit)} >
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Nhập Email Của Bạn</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" {...register('email', { required: true })} />
